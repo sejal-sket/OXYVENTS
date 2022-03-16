@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <title>Donation-Pay the humanity</title>
+</head>
+<style>
+    @import url('https://fonts.googleapis.com/css?family=Josefin+Sans');
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        outline: none;
+        text-decoration: none;
+        font-family: 'Josefin Sans', sans-serif;
+    }
+    
+    body {
+        background: url("https://th.bing.com/th/id/Rdda97f2f5ffcd1828dfd43fe2a02f85e?rik=%2baR0neecpglBzw&riu=http%3a%2f%2fak1.picdn.net%2fshutterstock%2fvideos%2f16739281%2fthumb%2f1.jpg&ehk=t%2f%2blbPnMKoUiD0QtTgQtyTVV3ZTlhZeXDizVc3Sa2AA%3d&risl=&pid=ImgRaw");
+        background-size: cover;
+        width: 100%;
+        height: 100vh;
+    }
+    
+    .wrapper {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 500px;
+        height: 350px;
+    }
+    
+    .checkout_wrapper {
+        width: 500px;
+        height: 350px;
+        display: flex;
+    }
+    
+    .checkout_wrapper .product_info {
+        width: 45%;
+        background: #00ccf0;
+        border-top-left-radius: 20px;
+        border-bottom-left-radius: 20px;
+        position: relative;
+    }
+    
+    .checkout_wrapper .product_info img {
+        width: 240px;
+        margin-top: 30px;
+        margin-left: 5px;
+    }
+    
+    .checkout_wrapper .checkout_form {
+        width: 55%;
+        background: #fff;
+        padding: 50px 30px;
+        border-top-right-radius: 20px;
+        border-bottom-right-radius: 20px;
+    }
+    
+    .checkout_wrapper .product_info .content {
+        text-align: center;
+        margin-top: 25px;
+        color: #fff;
+        text-transform: uppercase;
+    }
+    
+    .checkout_wrapper .product_info .content h3 {
+        font-size: 18px;
+        line-height: 18px;
+        letter-spacing: 3px;
+    }
+    
+    .checkout_wrapper .product_info .content p {
+        margin-top: 10px;
+        font-size: 14px;
+    }
+    
+    .checkout_form p {
+        margin-bottom: 25px;
+        font-size: 20px;
+        text-transform: uppercase;
+    }
+    
+    .checkout_form .details .section {
+        margin-bottom: 15px;
+    }
+    
+    .checkout_form .details .section input[type="text"] {
+        width: 100%;
+        padding: 10px;
+        border: 2px solid #dddddd;
+    }
+    
+    .checkout_form .details .section input[type="text"]:focus {
+        border: 2px solid #06c2f1;
+    }
+    
+    .checkout_form .details .section.last_section {
+        display: flex;
+        justify-content: space-between;
+    }
+    
+    .checkout_form .details .section.last_section .item {
+        width: 48%;
+    }
+    
+    .checkout_form .details .btn {
+        background: #03e6f7;
+        padding: 10px;
+        border-radius: 25px;
+        text-align: center;
+        margin-top: 25px;
+    }
+    
+    .checkout_form .details .btn a {
+        color: #fff;
+        letter-spacing: 5px;
+        display: block;
+    }
+</style>
+
+<body>
+
+    <img style="height: 70px; width: 140px; margin-top: 20px; margin-left: 20px;" src="../assets/images/logo1.jpg">
+    </h1>
+    <div class="wrapper">
+        <div class="checkout_wrapper">
+            <div class="product_info">
+                <!-- <img src="#https://i.imgur.com/Jqq0Osu.png" alt="product"> -->
+                <div class="content">
+                    <h3><b><i>Donate to the poor</i></b><br/><br><br>
+                        <p>To the best of all we can do siting in our homes right now is to donate the part of your savings/income to the ones who don't have money to buy even the medicines for them.</h3>
+                    </p>
+                </div>
+            </div>
+            <div class="checkout_form">
+                <p>Payment Section</p>
+                <div class="details">
+                    <div class="section">
+                        <input type="text" placeholder="Card Number">
+                    </div>
+                    <div class="section">
+                        <input type="text" placeholder="Cardholder Name">
+                    </div>
+                    <div class="section last_section">
+                        <div class="item">
+                            <input type="text" placeholder="Expiry Date">
+                        </div>
+                        <div class="item">
+                            <input type="text" placeholder="CVV">
+                        </div>
+                    </div>
+
+                    <div class="btn">
+                        <a href="https://www.hdfcbank.com/personal/save/accounts">Pay</a>
+                    </div>
+                    <div id="paypal-button" style="margin-top: 10px;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://www.paypalobjects.com/api/checkout.js"></script>
+    <script>
+        paypal.Button.render({
+            // Configure environment
+            env: 'sandbox',
+            client: {
+                sandbox: 'demo_sandbox_client_id',
+                production: 'demo_production_client_id'
+            },
+            // Customize button (optional)
+            locale: 'en_US',
+            style: {
+                size: 'small',
+                color: 'gold',
+                shape: 'pill',
+            },
+            // Set up a payment
+            payment: function(data, actions) {
+                return actions.payment.create({
+                    transactions: [{
+                        amount: {
+                            total: '0.01',
+                            currency: 'USD'
+                        }
+                    }]
+                });
+            },
+            // Execute the payment
+            onAuthorize: function(data, actions) {
+                return actions.payment.execute()
+                    .then(function() {
+                        // Show a confirmation message to the buyer
+                        window.alert('Thank you for your purchase!');
+                    });
+            }
+        }, '#paypal-button');
+    </script>
+
+    <script type="text/javascript">
+        //set your publishable key
+        Stripe.setPublishableKey('Your_API_Publishable_Key');
+
+        //callback to handle the response from stripe
+        function stripeResponseHandler(status, response) {
+            if (response.error) {
+                //enable the submit button
+                $('#payBtn').removeAttr("disabled");
+                //display the errors on the form
+                $(".payment-errors").html(response.error.message);
+            } else {
+                var form$ = $("#paymentFrm");
+                //get token id
+                var token = response['id'];
+                //insert the token into the form
+                form$.append("<input type='hidden' name='stripeToken' value='" +
+                    token + "' />");
+                //submit form to the server
+                form$.get(0).submit();
+            }
+        }
+        $(document).ready(function() {
+            //on form submit
+            $("#paymentFrm").submit(function(event) {
+                //disable the submit button to prevent repeated clicks
+                $('#payBtn').attr("disabled", "disabled");
+
+                //create single-use token to charge the user
+                Stripe.createToken({
+                    number: $('.card-number').val(),
+                    cvc: $('.card-cvc').val(),
+                    exp_month: $('.card-expiry-month').val(),
+                    exp_year: $('.card-expiry-year').val()
+                }, stripeResponseHandler);
+
+                //submit from callback
+                return false;
+            });
+        });
+    </script>
+
+
+
+
+
+
+</body>
+
+</html>
